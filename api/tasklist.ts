@@ -27,3 +27,11 @@ export const addTaskToDatabase = (title, resume, status) => {
 export const deleteTaskFromList = (taskId) => {
     taskListRef.child(taskId).remove();
 }
+
+export const updateTaskFromList = (taskId, newTaskData) => {
+    taskListRef.child(taskId).set({
+        title: newTaskData.title,
+        resume: newTaskData.resume,
+        status: newTaskData.status
+    })
+}
