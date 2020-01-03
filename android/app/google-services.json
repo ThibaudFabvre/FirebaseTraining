@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "922738783851",
+    "firebase_url": "https://task-manager-d7260.firebaseio.com",
+    "project_id": "task-manager-d7260",
+    "storage_bucket": "task-manager-d7260.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:922738783851:android:5f775d0c8edfc671cfa32e",
+        "android_client_info": {
+          "package_name": "com.reactnativefirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "922738783851-2sirrdkl6sai10033ltd46iq8n1b9is3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCW44vvSQvQlghnBWhUM1mSyGEcv5xYcAE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "922738783851-2sirrdkl6sai10033ltd46iq8n1b9is3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "922738783851-6q9d45tgeqt13b8b1fv0k2c6o6sf4uo6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.TaskManagerIOS"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
