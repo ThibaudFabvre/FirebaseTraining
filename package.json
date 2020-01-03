@@ -11,15 +11,23 @@
     "prepare": "patch-package"
   },
   "dependencies": {
+    "@react-native-community/masked-view": "^0.1.5",
     "@react-native-firebase/app": "6.2.0",
+    "@react-native-firebase/database": "^6.2.0",
     "react": "16.9.0",
-    "react-native": "0.61.5"
+    "react-native": "0.61.5",
+    "react-native-gesture-handler": "^1.5.3",
+    "react-native-safe-area-context": "^0.6.2",
+    "react-native-screens": "^2.0.0-alpha.22"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
     "@babel/runtime": "^7.6.2",
     "@react-native-community/cli": "^2.9.0",
     "@react-native-community/eslint-config": "^0.0.5",
+    "@react-navigation/core": "^5.0.0-alpha.23",
+    "@react-navigation/native": "^5.0.0-alpha.22",
+    "@react-navigation/stack": "^5.0.0-alpha.37",
     "babel-jest": "^24.9.0",
     "eslint": "^6.5.1",
     "jest": "^24.9.0",
