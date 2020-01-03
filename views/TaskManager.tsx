@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {View, StyleSheet }  from 'react-native';
 import { getTasksList } from '../api/tasklist';
-import { List } from '.';
+import { List, AddTaskForm } from '.';
 
 
 const TaskManager: React.FC = () => {
@@ -29,6 +29,7 @@ const TaskManager: React.FC = () => {
                 <List list={inProgressList} color={'#FF7F00'}/>
                 <List list={doneList} color={'#BFFF00'}/>
             </View>
+            <AddTaskForm/>
         </View>
     )
 };

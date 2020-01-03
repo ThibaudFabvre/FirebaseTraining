@@ -17,3 +17,7 @@ export const getTasksList = async () => {
     })
     return tasksList;
 };
+
+export const addTaskToDatabase = (title, resume, status) => {
+        taskListRef.push().set({ title, resume, status});
+}
