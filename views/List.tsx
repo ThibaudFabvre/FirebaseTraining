@@ -11,7 +11,7 @@ const List: React.FC<Props> = ({ list, color }) => {
     return (
         <View style={{backgroundColor: color, justifyContent: 'space-around', alignItems: 'center'}}>
             {list.map(
-                ({title, resume }) => <Task title={title} resume={resume}/>
+                ({title, resume, id}) => <Task id={id} title={title} resume={resume}/>
             )}
         </View>
     );

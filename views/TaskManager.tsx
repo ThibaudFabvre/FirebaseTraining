@@ -13,6 +13,7 @@ const TaskManager: React.FC = () => {
     useEffect(() => {
         const newFunc = async () => {
             const tasksList = await getTasksList();
+            console.log(tasksList);
             setTasksList(tasksList);
         };
         try {

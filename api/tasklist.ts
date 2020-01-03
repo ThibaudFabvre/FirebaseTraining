@@ -9,7 +9,9 @@ export const getTasksList = async () => {
         const title = task.child('title').val();
         const resume = task.child('resume').val();
         const status = task.child('status').val();
+        const id = task.key;
         tasksList.push({
+            id: id,
             title: title,
             resume: resume,
             status: status
@@ -19,5 +21,9 @@ export const getTasksList = async () => {
 };
 
 export const addTaskToDatabase = (title, resume, status) => {
-        taskListRef.push().set({ title, resume, status});
+    taskListRef.push().set({ title, resume, status});
+}
+
+export const deleteTaskFromList = (taskId) => {
+    taskListRef.child(taskId).remove();
 }

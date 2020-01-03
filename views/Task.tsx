@@ -1,11 +1,22 @@
 import React from 'react';
-import { StyleSheet, View, Text} from 'react-native';
+import { StyleSheet, View, Text, Button} from 'react-native';
+import { deleteTaskFromList } from '../api/tasklist';
 interface Props {
     title: string,
     resume: string,
+    id: number,
 }
 
-const Task: React.FC<Props> = ({ title, resume}) => {
+const Task: React.FC<Props> = ({ title, resume, id}) => {
+
+    const handleDeletion = () => {
+        try {
+            deleteTaskFromList(id);
+            console.log('successfuly removed task from list');
+        } catch {
+            console.log('could not remove task from list');
+        }
+    }
     return (
         <View style={styles.defaultCardStyle}>
                 <Text style={{textAlign: 'center', padding: 10}}>{title}</Text>
@@ -18,6 +29,7 @@ const Task: React.FC<Props> = ({ title, resume}) => {
                     <Text style={{color: '#fff', fontWeight: 'bold', textAlign: 'center'}}>Delete</Text>
                 </View>
             </View>
+            <Button title="X" onPress={() => handleDeletion()}/>
         </View>
     );
 }
