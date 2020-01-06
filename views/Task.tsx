@@ -6,16 +6,15 @@ interface Props {
     title: string,
     resume: string,
     id: number,
-    status: string,
     deleteTask: void;
     reloadTasksList: void;
 }
 
-const Task: React.FC<Props> = ({ title, resume, id, status, deleteTask, reloadTasksList}) => {
+const Task: React.FC<Props> = ({ title, resume, id, deleteTask, reloadTasksList}) => {
     const [isFormOpen, setIsFormOpen] = useState(false);
 
-    const [formTitle, setNewTitle] = useState();
-    const [formResume, setNewResume] = useState();
+    const [formTitle, setNewTitle] = useState('');
+    const [formResume, setNewResume] = useState('');
     const [formStatus, setNewStatus] = useState();
 
 
@@ -24,8 +23,10 @@ const Task: React.FC<Props> = ({ title, resume, id, status, deleteTask, reloadTa
     }
 
     const handleValidation = () => {
+        const newTitle = formTitle === '' ? title : formTitle;
+        const newResume = formResume === '' ? resume : formResume;
         try {
-            const updatedTaskData = {title: formTitle, resume: formResume, status: formStatus};
+            const updatedTaskData = {title: newTitle, resume: newResume, status: formStatus};
             updateTaskFromList(id, updatedTaskData);
             reloadTasksList();
             console.log('updated task successfully')
@@ -58,10 +59,11 @@ const Task: React.FC<Props> = ({ title, resume, id, status, deleteTask, reloadTa
                     <TextInput style={{ backgroundColor: `${isFormOpen ? '#fff' : '#882692'}` ,alignSelf: 'center', borderWidth: 1, borderColor: '#000', marginTop: 20, borderRadius: 5, width: '90%', paddingLeft: 10, paddingVertical: 15 }} placeholder='new resume' onChangeText={ input => setNewResume(input)}/>
                     <Picker
                     selectedValue={formStatus}
-                    style={{ backgroundColor: `${isFormOpen ? '#fff' : '#882692'}`, alignSelf: 'center', marginTop: 20, width: '90%', paddingLeft: 10}}
+                    style={{backgroundColor: `${isFormOpen ? '#fff' : '#882692'}`, alignSelf: 'center', marginTop: 20, width: '90%', paddingLeft: 10}}
                     onValueChange={(status) =>
                         setNewStatus(status)
                     }>
+                        <Picker.Item label="Select status" value={0}/>
                         <Picker.Item label="To do" value="to do" />
                         <Picker.Item label="In progress" value="in progress" />
                         <Picker.Item label="Done" value="done"/>

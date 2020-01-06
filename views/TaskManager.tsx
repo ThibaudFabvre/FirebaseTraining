@@ -13,6 +13,7 @@ const TaskManager: React.FC = () => {
 
     const reloadTasksList = async () => {
         const tasksList = await getTasksList();
+        console.log(tasksList);
         console.log('successfully retrieved task list');
         setTasksList(tasksList);
     }
