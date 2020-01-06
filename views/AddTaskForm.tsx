@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {View, StyleSheet, Button }  from 'react-native';
+import {View, Text, StyleSheet, Button, TouchableHighlight }  from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { addTaskToDatabase } from '../api/tasklist';
 
@@ -24,9 +24,11 @@ const AddTaskForm: React.FC<Props> = ({ addTaskToList }) => {
 
     return (
         <View>
-            <TextInput style={{backgroundColor: '#fff', textAlign: 'center', borderWidth: 1}} placeholder="title value" onChangeText={value => setTitleValue(value)} />
-            <TextInput style={{backgroundColor: '#fff', borderWidth: 1}} placeholder="resume value" onChangeText={value => setResumeValue(value)} />
-            <Button title="Add Task" onPress={() => handleValidation()}/>
+            <TextInput style={{backgroundColor: '#fff', textAlign: 'center',paddingVertical: 10, borderWidth: 1}} placeholder="title value" onChangeText={value => setTitleValue(value)} />
+            <TextInput style={{backgroundColor: '#fff', textAlign: 'center',paddingVertical: 10, borderWidth: 1}} placeholder="resume value" onChangeText={value => setResumeValue(value)} />
+            <TouchableHighlight style={{backgroundColor: '#882692', alignSelf: 'center', paddingBottom: 20, paddingTop: 20, width: '100%'}} onPress={() => handleValidation()}>
+                <Text style={{color: 'white', alignSelf: 'center', fontWeight: 'bold'}}>Add Task</Text>
+            </TouchableHighlight>
         </View>
     )
 };

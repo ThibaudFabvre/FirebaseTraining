@@ -54,9 +54,9 @@ const Task: React.FC<Props> = ({ title, resume, id, status, deleteTask, reloadTa
                 </>
                 :
                 <>  
-                    <TextInput style={{ backgroundColor: `${isFormOpen ? '#fff' : '#882692'}` ,alignSelf: 'center', borderWidth: 1, borderColor: '#000', marginTop: 15, borderRadius: 5, width: '90%', paddingLeft: 10 }} placeholder='new title' onChangeText={ input => setNewTitle(input)}/>
-                    <TextInput style={{ backgroundColor: `${isFormOpen ? '#fff' : '#882692'}` ,alignSelf: 'center', borderWidth: 1, borderColor: '#000', marginTop: 15, borderRadius: 5, width: '90%', paddingLeft: 10 }} placeholder='new resume' onChangeText={ input => setNewResume(input)}/>
-                    <TextInput style={{ backgroundColor: `${isFormOpen ? '#fff' : '#882692'}` ,alignSelf: 'center', borderWidth: 1, borderColor: '#000', marginTop: 15, borderRadius: 5, width: '90%', paddingLeft: 10 }} placeholder='status' onChangeText={ input => setNewStatus(input)}/>
+                    <TextInput style={{ backgroundColor: `${isFormOpen ? '#fff' : '#882692'}` ,alignSelf: 'center', borderWidth: 1, borderColor: '#000', marginTop: 20, borderRadius: 5, width: '90%', paddingLeft: 10, paddingVertical: 15 }} placeholder='new title' onChangeText={ input => setNewTitle(input)}/>
+                    <TextInput style={{ backgroundColor: `${isFormOpen ? '#fff' : '#882692'}` ,alignSelf: 'center', borderWidth: 1, borderColor: '#000', marginTop: 20, borderRadius: 5, width: '90%', paddingLeft: 10, paddingVertical: 15 }} placeholder='new resume' onChangeText={ input => setNewResume(input)}/>
+                    <TextInput style={{ backgroundColor: `${isFormOpen ? '#fff' : '#882692'}` ,alignSelf: 'center', borderWidth: 1, borderColor: '#000', marginTop: 20, borderRadius: 5, width: '90%', paddingLeft: 10, paddingVertical: 15 }} placeholder='status' onChangeText={ input => setNewStatus(input)}/>
                 </>
             }
             <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
