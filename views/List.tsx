@@ -6,13 +6,14 @@ interface Props {
     list: any,
     color: string,
     deleteTaskFromList: void;
+    reloadTasksList: void;
 }
 
-const List: React.FC<Props> = ({ list, color, deleteTaskFromList }) => {
+const List: React.FC<Props> = ({ list, color, deleteTaskFromList, reloadTasksList }) => {
     return (
         <View style={{backgroundColor: color, justifyContent: 'space-around', alignItems: 'center'}}>
             {list.map(
-                ({title, resume, id, status}) => <Task deleteTask= {deleteTaskFromList} id={id} status={status} title={title} resume={resume}/>
+                ({title, resume, id, status}) => <Task reloadTasksList={reloadTasksList} deleteTask= {deleteTaskFromList} id={id} status={status} title={title} resume={resume}/>
             )}
         </View>
     );

@@ -11,7 +11,7 @@ const TaskManager: React.FC = () => {
     const inProgressList = tasksList.filter( element => element.status === 'in progress')
     const doneList = tasksList.filter(element => element.status === 'done')
 
-    const reloadList = async () => {
+    const reloadTasksList = async () => {
         const tasksList = await getTasksList();
         console.log('successfuly retrieved task list');
         setTasksList(tasksList);
@@ -29,17 +29,17 @@ const TaskManager: React.FC = () => {
 
     const addTaskToList = (task) => {
         setTasksList(tasksList.concat(task));
-        reloadList();
+        reloadTasksList();
     }
     
     const deleteTaskFromList = (taskId) => {
         deleteTask(taskId);
-        reloadList();
+        reloadTasksList();
     }
 
     useEffect(() => {
         const newFunc = async () => {
-            await reloadList();
+            await reloadTasksList();
         };
         try {
             newFunc();
@@ -51,9 +51,9 @@ const TaskManager: React.FC = () => {
     return (
         <View style={{flex: 1}}>
             <View style={styles.overallStyle}>
-                <List deleteTaskFromList={deleteTaskFromList} list={toDoList} color={'#87CEEB'}/>
-                <List deleteTaskFromList={deleteTaskFromList} list={inProgressList} color={'#FF7F00'}/>
-                <List deleteTaskFromList={deleteTaskFromList} list={doneList} color={'#BFFF00'}/>
+                <List reloadTasksList={reloadTasksList} deleteTaskFromList={deleteTaskFromList} list={toDoList} color={'#87CEEB'}/>
+                <List reloadTasksList={reloadTasksList} deleteTaskFromList={deleteTaskFromList} list={inProgressList} color={'#FF7F00'}/>
+                <List reloadTasksList={reloadTasksList} deleteTaskFromList={deleteTaskFromList} list={doneList} color={'#BFFF00'}/>
             </View>
             <AddTaskForm addTaskToList={addTaskToList} />
         </View>
@@ -62,7 +62,7 @@ const TaskManager: React.FC = () => {
 
 const styles = StyleSheet.create({
     overallStyle: {
-        flex: 11,
+        flex: 1,
     },
     footer: {
         alignItems: 'center',

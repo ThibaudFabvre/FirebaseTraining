@@ -1,6 +1,5 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, Text, TextInput, Button } from 'react-native';
-import { TouchableHighlight } from 'react-native-gesture-handler';
 import { deleteTaskFromList, updateTaskFromList } from '../api/tasklist';
 
 interface Props {
@@ -9,9 +8,10 @@ interface Props {
     id: number,
     status: string,
     deleteTask: void;
+    reloadTasksList: void;
 }
 
-const Task: React.FC<Props> = ({ title, resume, id, status, deleteTask}) => {
+const Task: React.FC<Props> = ({ title, resume, id, status, deleteTask, reloadTasksList}) => {
     const [isFormOpen, setIsFormOpen] = useState(false);
 
     const [formTitle, setNewTitle] = useState();
@@ -27,6 +27,7 @@ const Task: React.FC<Props> = ({ title, resume, id, status, deleteTask}) => {
         try {
             const updatedTaskData = {title: formTitle, resume: formResume, status: formStatus};
             updateTaskFromList(id, updatedTaskData);
+            reloadTasksList();
             console.log('updated task successfully')
             setIsFormOpen(false);
         } catch {
