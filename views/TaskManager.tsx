@@ -7,14 +7,24 @@ import { List, AddTaskForm } from '.';
 const TaskManager: React.FC = () => {
 
     const [tasksList , setTasksList] = useState([{}]);
-    const toDoList = tasksList.filter(element => element.status === 'to do')
+    const [toDoList, setToDoList] = useState(tasksList.filter(element => element.status === 'to do'));
     const inProgressList = tasksList.filter( element => element.status === 'in progress')
     const doneList = tasksList.filter(element => element.status === 'done')
+
+    const reloadList = async () => {
+        const tasksList = await getTasksList();
+        console.log('successfuly retrieved task list');
+        setTasksList(tasksList);
+    }
+
+    const addTaskToList = (task) => {
+        setToDoList(toDoList.concat(task));
+        reloadList();
+    }
+
     useEffect(() => {
-        const newFunc = async () => {
-            const tasksList = await getTasksList();
-            console.log(tasksList);
-            setTasksList(tasksList);
+        const newFunc = () => {
+            reloadList();
         };
         try {
             newFunc();
@@ -30,7 +40,7 @@ const TaskManager: React.FC = () => {
                 <List list={inProgressList} color={'#FF7F00'}/>
                 <List list={doneList} color={'#BFFF00'}/>
             </View>
-            <AddTaskForm/>
+            <AddTaskForm addTaskToList={addTaskToList} />
         </View>
     )
 };

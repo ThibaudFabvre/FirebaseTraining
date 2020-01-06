@@ -3,13 +3,18 @@ import {View, StyleSheet, Button }  from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { addTaskToDatabase } from '../api/tasklist';
 
+type Props = {
+    addTaskToList: void;
+}
 
-const TaskManager: React.FC = () => {
+const AddTaskForm: React.FC<Props> = ({ addTaskToList }) => {
     const [title, setTitleValue] = useState();
     const [resume, setResumeValue] = useState();
 
     const handleValidation = () => {
         try {
+            const newTask = {title: title, resume: resume, status: 'to do'};
+            addTaskToList(newTask);
             addTaskToDatabase(title, resume, 'to do');
             console.log('successfuly added task to list');
         } catch {
@@ -29,4 +34,4 @@ const TaskManager: React.FC = () => {
 const styles = StyleSheet.create({
 });
 
-export default TaskManager;
+export default AddTaskForm;
