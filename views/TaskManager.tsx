@@ -7,7 +7,7 @@ import { List, AddTaskForm } from '.';
 const TaskManager: React.FC = () => {
 
     const [tasksList , setTasksList] = useState([{}]);
-    const [toDoList, setToDoList] = useState(tasksList.filter(element => element.status === 'to do'));
+    const toDoList= tasksList.filter(element => element.status === 'to do');
     const inProgressList = tasksList.filter( element => element.status === 'in progress')
     const doneList = tasksList.filter(element => element.status === 'done')
 
@@ -17,14 +17,29 @@ const TaskManager: React.FC = () => {
         setTasksList(tasksList);
     }
 
+    const deleteTask = async (id) => {
+        try {
+            const newList = tasksList.filter(task => task.id !== id);
+            console.log(newList);
+            setTasksList(newList);
+        } catch {
+
+        }
+    }
+
     const addTaskToList = (task) => {
-        setToDoList(toDoList.concat(task));
+        setTasksList(tasksList.concat(task));
+        reloadList();
+    }
+    
+    const deleteTaskFromList = (taskId) => {
+        deleteTask(taskId);
         reloadList();
     }
 
     useEffect(() => {
-        const newFunc = () => {
-            reloadList();
+        const newFunc = async () => {
+            await reloadList();
         };
         try {
             newFunc();
@@ -36,9 +51,9 @@ const TaskManager: React.FC = () => {
     return (
         <View style={{flex: 1}}>
             <View style={styles.overallStyle}>
-                <List list={toDoList} color={'#87CEEB'}/>
-                <List list={inProgressList} color={'#FF7F00'}/>
-                <List list={doneList} color={'#BFFF00'}/>
+                <List deleteTaskFromList={deleteTaskFromList} list={toDoList} color={'#87CEEB'}/>
+                <List deleteTaskFromList={deleteTaskFromList} list={inProgressList} color={'#FF7F00'}/>
+                <List deleteTaskFromList={deleteTaskFromList} list={doneList} color={'#BFFF00'}/>
             </View>
             <AddTaskForm addTaskToList={addTaskToList} />
         </View>

@@ -8,9 +8,10 @@ interface Props {
     resume: string,
     id: number,
     status: string,
+    deleteTask: void;
 }
 
-const Task: React.FC<Props> = ({ title, resume, id, status}) => {
+const Task: React.FC<Props> = ({ title, resume, id, status, deleteTask}) => {
     const [isFormOpen, setIsFormOpen] = useState(false);
 
     const [formTitle, setNewTitle] = useState();
@@ -35,6 +36,7 @@ const Task: React.FC<Props> = ({ title, resume, id, status}) => {
 
     const handleDeletion = () => {
         try {
+            deleteTask(id);
             deleteTaskFromList(id);
             console.log('successfuly deleted task from list');
         } catch {
@@ -60,7 +62,7 @@ const Task: React.FC<Props> = ({ title, resume, id, status}) => {
                 {!isFormOpen ?
                 <>
                     <Button title='edit' onPress={() => setIsFormOpen(true)} />
-                    <Button title='delete' onPress={() => setIsFormOpen(true)} />
+                    <Button title='delete' onPress={() => handleDeletion()} />
                 </>
                 :
                 <>
