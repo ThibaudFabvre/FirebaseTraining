@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, TextInput, Button, TouchableHighlight } from 'react-native';
+import { StyleSheet,Picker,  View, Text, TextInput, Button, TouchableHighlight } from 'react-native';
 import { deleteTaskFromList, updateTaskFromList } from '../api/tasklist';
 
 interface Props {
@@ -56,14 +56,23 @@ const Task: React.FC<Props> = ({ title, resume, id, status, deleteTask, reloadTa
                 <>  
                     <TextInput style={{ backgroundColor: `${isFormOpen ? '#fff' : '#882692'}` ,alignSelf: 'center', borderWidth: 1, borderColor: '#000', marginTop: 20, borderRadius: 5, width: '90%', paddingLeft: 10, paddingVertical: 15 }} placeholder='new title' onChangeText={ input => setNewTitle(input)}/>
                     <TextInput style={{ backgroundColor: `${isFormOpen ? '#fff' : '#882692'}` ,alignSelf: 'center', borderWidth: 1, borderColor: '#000', marginTop: 20, borderRadius: 5, width: '90%', paddingLeft: 10, paddingVertical: 15 }} placeholder='new resume' onChangeText={ input => setNewResume(input)}/>
-                    <TextInput style={{ backgroundColor: `${isFormOpen ? '#fff' : '#882692'}` ,alignSelf: 'center', borderWidth: 1, borderColor: '#000', marginTop: 20, borderRadius: 5, width: '90%', paddingLeft: 10, paddingVertical: 15 }} placeholder='status' onChangeText={ input => setNewStatus(input)}/>
+                    <Picker
+                    selectedValue={formStatus}
+                    style={{ backgroundColor: `${isFormOpen ? '#fff' : '#882692'}`, alignSelf: 'center', marginTop: 20, width: '90%', paddingLeft: 10}}
+                    onValueChange={(status) =>
+                        setNewStatus(status)
+                    }>
+                        <Picker.Item label="To do" value="to do" />
+                        <Picker.Item label="In progress" value="in progress" />
+                        <Picker.Item label="Done" value="done"/>
+                    </Picker>
                 </>
             }
             <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
                 {!isFormOpen ?
                 <>
-                    <TouchableHighlight style={{backgroundColor: '#882692', borderRadius: 50, paddingHorizontal:20, paddingVertical: 15, marginBottom: 15, marginTop: 20}} onPress={() => setIsFormOpen(true)}><Text style={{fontWeight: 'bold', color: '#fff'}}>V</Text></TouchableHighlight>
-                    <TouchableHighlight style={{backgroundColor: '#882692', borderRadius: 50, paddingHorizontal: 20, paddingVertical: 15, marginBottom: 15, marginTop: 20}} onPress={() => handleDeletion()} ><Text style={{fontWeight: 'bold', color: '#fff'}}>X</Text></TouchableHighlight>
+                    <TouchableHighlight style={{backgroundColor: '#882692', borderRadius: 50, paddingHorizontal:20, paddingVertical: 15, marginBottom: 15, marginTop: 20}} onPress={() => setIsFormOpen(true)}><Text style={{fontWeight: 'bold', color: '#fff'}}>Edit</Text></TouchableHighlight>
+                    <TouchableHighlight style={{backgroundColor: '#882692', borderRadius: 50, paddingHorizontal: 20, paddingVertical: 15, marginBottom: 15, marginTop: 20}} onPress={() => handleDeletion()} ><Text style={{fontWeight: 'bold', color: '#fff'}}>Delete</Text></TouchableHighlight>
                 </>
                 :
                 <>

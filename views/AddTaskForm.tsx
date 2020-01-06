@@ -24,8 +24,8 @@ const AddTaskForm: React.FC<Props> = ({ addTaskToList }) => {
 
     return (
         <View>
-            <TextInput style={{backgroundColor: '#fff', textAlign: 'center',paddingVertical: 10, borderWidth: 1}} placeholder="title value" onChangeText={value => setTitleValue(value)} />
-            <TextInput style={{backgroundColor: '#fff', textAlign: 'center',paddingVertical: 10, borderWidth: 1}} placeholder="resume value" onChangeText={value => setResumeValue(value)} />
+            <TextInput style={{backgroundColor: '#fff', textAlign: 'center',paddingVertical: 10, borderWidth: 1}} placeholder="title" onChangeText={value => setTitleValue(value)} />
+            <TextInput style={{backgroundColor: '#fff', textAlign: 'center',paddingVertical: 10, borderWidth: 1}} placeholder="resume" onChangeText={value => setResumeValue(value)} />
             <TouchableHighlight style={{backgroundColor: '#882692', alignSelf: 'center', paddingBottom: 20, paddingTop: 20, width: '100%'}} onPress={() => handleValidation()}>
                 <Text style={{color: 'white', alignSelf: 'center', fontWeight: 'bold'}}>Add Task</Text>
             </TouchableHighlight>
