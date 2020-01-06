@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {View, StyleSheet }  from 'react-native';
+import {View, ScrollView, StyleSheet }  from 'react-native';
 import { getTasksList } from '../api/tasklist';
 import { List, AddTaskForm } from '.';
 
@@ -50,11 +50,11 @@ const TaskManager: React.FC = () => {
 
     return (
         <View style={{flex: 1}}>
-            <View style={styles.overallStyle}>
+            <ScrollView style={styles.overallStyle}>
                 <List reloadTasksList={reloadTasksList} deleteTaskFromList={deleteTaskFromList} list={toDoList} color={'#87CEEB'}/>
                 <List reloadTasksList={reloadTasksList} deleteTaskFromList={deleteTaskFromList} list={inProgressList} color={'#FF7F00'}/>
                 <List reloadTasksList={reloadTasksList} deleteTaskFromList={deleteTaskFromList} list={doneList} color={'#BFFF00'}/>
-            </View>
+            </ScrollView>
             <AddTaskForm addTaskToList={addTaskToList} />
         </View>
     )
