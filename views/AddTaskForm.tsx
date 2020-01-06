@@ -16,7 +16,7 @@ const AddTaskForm: React.FC<Props> = ({ addTaskToList }) => {
             const newTask = {title: title, resume: resume, status: 'to do'};
             addTaskToList(newTask);
             addTaskToDatabase(title, resume, 'to do');
-            console.log('successfuly added task to list');
+            console.log('successfully added task to list');
         } catch {
             console.log('error while adding task to list');
         }

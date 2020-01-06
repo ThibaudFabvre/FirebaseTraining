@@ -9,7 +9,7 @@ const Stack = createStackNavigator();
 const MainMenu = () => (
     <NavigationContainer>
         <Stack.Navigator>
-            <Stack.Screen name="TaskManager" component={TaskManager}/>
+            <Stack.Screen name="Task Manager" component={TaskManager}/>
         </Stack.Navigator>
     </NavigationContainer>
 );

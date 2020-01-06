@@ -39,7 +39,7 @@ const Task: React.FC<Props> = ({ title, resume, id, status, deleteTask, reloadTa
         try {
             deleteTask(id);
             deleteTaskFromList(id);
-            console.log('successfuly deleted task from list');
+            console.log('successfully deleted task from list');
         } catch {
             console.log('could not remove task from list');
         }

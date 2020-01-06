@@ -13,17 +13,17 @@ const TaskManager: React.FC = () => {
 
     const reloadTasksList = async () => {
         const tasksList = await getTasksList();
-        console.log('successfuly retrieved task list');
+        console.log('successfully retrieved task list');
         setTasksList(tasksList);
     }
 
-    const deleteTask = async (id) => {
+    const deleteTask = (id) => {
         try {
             const newList = tasksList.filter(task => task.id !== id);
-            console.log(newList);
             setTasksList(newList);
+            console.log('successfully delete task from list');
         } catch {
-
+            console.log('could not delete task from list');
         }
     }
 
