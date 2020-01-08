@@ -13,7 +13,7 @@ const List: React.FC<Props> = ({ list, color, deleteTaskFromList, reloadTasksLis
     return (
         <View style={{backgroundColor: color, justifyContent: 'space-around', alignItems: 'center'}}>
             {list.map(
-                ({title, resume, id}) => <Task reloadTasksList={reloadTasksList} deleteTask= {deleteTaskFromList} id={id} title={title} resume={resume}/>
+                ({title, resume, id}) => <Task key={id} reloadTasksList={reloadTasksList} deleteTask= {deleteTaskFromList} id={id} title={title} resume={resume}/>
             )}
         </View>
     );
