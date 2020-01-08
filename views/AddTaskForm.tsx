@@ -24,16 +24,34 @@ const AddTaskForm: React.FC<Props> = ({ addTaskToList }) => {
 
     return (
         <View>
-            <TextInput style={{backgroundColor: '#fff', textAlign: 'center',paddingVertical: 10, borderWidth: 1}} placeholder="title" onChangeText={value => setTitleValue(value)} />
-            <TextInput style={{backgroundColor: '#fff', textAlign: 'center',paddingVertical: 10, borderWidth: 1}} placeholder="resume" onChangeText={value => setResumeValue(value)} />
-            <TouchableHighlight style={{backgroundColor: '#882692', alignSelf: 'center', paddingBottom: 20, paddingTop: 20, width: '100%'}} onPress={() => handleValidation()}>
-                <Text style={{color: 'white', alignSelf: 'center', fontWeight: 'bold'}}>Add Task</Text>
+            <TextInput style={styles.addTaskFormInput} placeholder="title" onChangeText={value => setTitleValue(value)} />
+            <TextInput style={styles.addTaskFormInput} placeholder="resume" onChangeText={value => setResumeValue(value)} />
+            <TouchableHighlight style={styles.addTaskButton} onPress={() => handleValidation()}>
+                <Text style={styles.addTaskButtonText}>Add Task</Text>
             </TouchableHighlight>
         </View>
     )
 };
 
 const styles = StyleSheet.create({
+    addTaskFormInput: {
+        backgroundColor: '#fff', 
+        textAlign: 'center',
+        paddingVertical: 10, 
+        borderWidth: 1
+    },
+    addTaskButton: {
+        backgroundColor: '#882692', 
+        alignSelf: 'center', 
+        paddingBottom: 20, 
+        paddingTop: 20, 
+        width: '100%'
+    },
+    addTaskButtonText: {
+        color: 'white', 
+        alignSelf: 'center', 
+        fontWeight: 'bold'
+    },
 });
 
 export default AddTaskForm;

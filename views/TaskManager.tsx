@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {View, ScrollView, StyleSheet }  from 'react-native';
 import { getTasksList } from '../api/tasklist';
 import { List, AddTaskForm } from '.';
+import { theme } from '../theme';
 
 
 const TaskManager: React.FC = () => {
@@ -13,7 +14,6 @@ const TaskManager: React.FC = () => {
 
     const reloadTasksList = async () => {
         const tasksList = await getTasksList();
-        console.log(tasksList);
         console.log('successfully retrieved task list');
         setTasksList(tasksList);
     }
@@ -52,9 +52,9 @@ const TaskManager: React.FC = () => {
     return (
         <View style={{flex: 1}}>
             <ScrollView style={styles.overallStyle}>
-                <List reloadTasksList={reloadTasksList} deleteTaskFromList={deleteTaskFromList} list={toDoList} color={'#87CEEB'}/>
-                <List reloadTasksList={reloadTasksList} deleteTaskFromList={deleteTaskFromList} list={inProgressList} color={'#FF7F00'}/>
-                <List reloadTasksList={reloadTasksList} deleteTaskFromList={deleteTaskFromList} list={doneList} color={'#BFFF00'}/>
+                <List reloadTasksList={reloadTasksList} deleteTaskFromList={deleteTaskFromList} list={toDoList} color={theme.toDoColor}/>
+                <List reloadTasksList={reloadTasksList} deleteTaskFromList={deleteTaskFromList} list={inProgressList} color={theme.inProgressColor}/>
+                <List reloadTasksList={reloadTasksList} deleteTaskFromList={deleteTaskFromList} list={doneList} color={theme.doneColor}/>
             </ScrollView>
             <AddTaskForm addTaskToList={addTaskToList} />
         </View>

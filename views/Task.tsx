@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet,Picker,  View, Text, TextInput, Button, TouchableHighlight } from 'react-native';
 import { deleteTaskFromList, updateTaskFromList } from '../api/tasklist';
+import { theme } from '../theme';
 
 interface Props {
     title: string,
@@ -11,12 +12,18 @@ interface Props {
 }
 
 const Task: React.FC<Props> = ({ title, resume, id, deleteTask, reloadTasksList}) => {
+    
+    /**
+     * State
+     */
     const [isFormOpen, setIsFormOpen] = useState(false);
-
     const [formTitle, setNewTitle] = useState('');
     const [formResume, setNewResume] = useState('');
     const [formStatus, setNewStatus] = useState();
 
+    /**
+     * Handlers
+     */
 
     const handleCancel = () => {
         setIsFormOpen(false);
@@ -46,20 +53,24 @@ const Task: React.FC<Props> = ({ title, resume, id, deleteTask, reloadTasksList}
         }
     }
 
+    /**
+     * Context
+     */
+
     return (
-        <View style={[styles.defaultCardStyle, { backgroundColor: `${isFormOpen ? '#882692' : '#fff'}`}]}>
+        <View style={[styles.defaultCardStyle, { backgroundColor: `${isFormOpen ? theme.mainColor : theme.secondaryColor}`}]}>
             {!isFormOpen ?
                 <>
-                    <Text style={{backgroundColor: '#882692', fontWeight: 'bold', color: '#fff', textAlign: 'center', padding: 10}}>{title}</Text>
-                    <Text style={{ padding: 10 }}>{resume}</Text>
+                    <Text style={styles.taskTitle}>{title}</Text>
+                    <Text style={styles.taskResume}>{resume}</Text>
                 </>
                 :
                 <>  
-                    <TextInput style={{ backgroundColor: `${isFormOpen ? '#fff' : '#882692'}` ,alignSelf: 'center', borderWidth: 1, borderColor: '#000', marginTop: 20, borderRadius: 5, width: '90%', paddingLeft: 10, paddingVertical: 15 }} placeholder='new title' onChangeText={ input => setNewTitle(input)}/>
-                    <TextInput style={{ backgroundColor: `${isFormOpen ? '#fff' : '#882692'}` ,alignSelf: 'center', borderWidth: 1, borderColor: '#000', marginTop: 20, borderRadius: 5, width: '90%', paddingLeft: 10, paddingVertical: 15 }} placeholder='new resume' onChangeText={ input => setNewResume(input)}/>
+                    <TextInput style={[{ backgroundColor: `${isFormOpen ? theme.secondaryColor : theme.mainColor}`}, styles.taskInput ]} placeholder='new title' onChangeText={ input => setNewTitle(input)}/>
+                    <TextInput style={[{ backgroundColor: `${isFormOpen ? theme.secondaryColor : theme.mainColor}`}, styles.taskInput ]} placeholder='new resume' onChangeText={ input => setNewResume(input)}/>
                     <Picker
                     selectedValue={formStatus}
-                    style={{backgroundColor: `${isFormOpen ? '#fff' : '#882692'}`, alignSelf: 'center', marginTop: 20, width: '90%', paddingLeft: 10}}
+                    style={[{backgroundColor: `${isFormOpen ? theme.secondaryColor : theme.mainColor}`}, styles.formStatusPicker]}
                     onValueChange={(status) =>
                         setNewStatus(status)
                     }>
@@ -73,13 +84,13 @@ const Task: React.FC<Props> = ({ title, resume, id, deleteTask, reloadTasksList}
             <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
                 {!isFormOpen ?
                 <>
-                    <TouchableHighlight style={{backgroundColor: '#882692', borderRadius: 50, paddingHorizontal:20, paddingVertical: 15, marginBottom: 15, marginTop: 20}} onPress={() => setIsFormOpen(true)}><Text style={{fontWeight: 'bold', color: '#fff'}}>Edit</Text></TouchableHighlight>
-                    <TouchableHighlight style={{backgroundColor: '#882692', borderRadius: 50, paddingHorizontal: 20, paddingVertical: 15, marginBottom: 15, marginTop: 20}} onPress={() => handleDeletion()} ><Text style={{fontWeight: 'bold', color: '#fff'}}>Delete</Text></TouchableHighlight>
+                    <TouchableHighlight style={styles.taskButton} onPress={() => setIsFormOpen(true)}><Text style={styles.taskButtonText}>Edit</Text></TouchableHighlight>
+                    <TouchableHighlight style={styles.taskButton} onPress={() => handleDeletion()} ><Text style={styles.taskButtonText}>Delete</Text></TouchableHighlight>
                 </>
                 :
                 <>
-                    <TouchableHighlight style={{backgroundColor: '#fff', borderRadius: 50, paddingHorizontal: 20, paddingVertical: 15, marginBottom: 15, marginTop: 20}} onPress={() => handleValidation()} ><Text style={{fontWeight: 'bold', color: '#882692'}}>V</Text></TouchableHighlight>
-                    <TouchableHighlight style={{backgroundColor: '#fff', borderRadius: 50, paddingHorizontal: 20, paddingVertical: 15, marginBottom: 15, marginTop: 20}} onPress={() => handleCancel()} ><Text style={{fontWeight: 'bold', color: '#882692'}}>X</Text></TouchableHighlight>
+                    <TouchableHighlight style={styles.formButton} onPress={() => handleValidation()} ><Text style={styles.formButtonText}>V</Text></TouchableHighlight>
+                    <TouchableHighlight style={styles.formButton} onPress={() => handleCancel()} ><Text style={styles.formButtonText}>X</Text></TouchableHighlight>
                 </>
                 }
             </View>
@@ -91,10 +102,60 @@ const styles = StyleSheet.create({
     defaultCardStyle: {
         borderRadius: 15,
         borderWidth: 2,
-        borderColor: '#882692',
+        borderColor: theme.mainColor,
         width: '80%',
         margin: 10,
         overflow: "hidden",
+    },
+    taskTitle: {
+        backgroundColor: theme.mainColor,
+        fontWeight: 'bold',
+        color: theme.secondaryColor,
+        textAlign: 'center',
+        padding: 10,
+    },
+    taskResume: { 
+        padding: 10, 
+    },
+    taskInput: { 
+        alignSelf: 'center', 
+        borderWidth: 1, 
+        borderColor: '#000', 
+        marginTop: 20, 
+        borderRadius: 5, 
+        width: '90%', 
+        paddingLeft: 10, 
+        paddingVertical: 15
+    },
+    taskButton: {
+        backgroundColor: theme.mainColor,
+        borderRadius: 50,
+        paddingHorizontal: 20,
+        paddingVertical: 15,
+        marginBottom: 15,
+        marginTop: 20
+    },
+    taskButtonText: {
+        fontWeight: 'bold',
+        color: theme.secondaryColor
+    },
+    formStatusPicker:  {
+        alignSelf: 'center',
+        marginTop: 20,
+        width: '90%',
+        paddingLeft: 10,
+    },
+    formButton : {
+        backgroundColor: theme.secondaryColor,
+        borderRadius: 50,
+        paddingHorizontal: 20,
+        paddingVertical: 15,
+        marginBottom: 15, 
+        marginTop: 20
+    },
+    formButtonText: {
+        fontWeight: 'bold',
+        color: theme.mainColor
     },
 });
 
