@@ -39,13 +39,13 @@ const TaskManager: React.FC = () => {
     }
 
     useEffect(() => {
-        const newFunc = async () => {
+        const getTasks = async () => {
             await reloadTasksList();
         };
         try {
-            newFunc();
+            getTasks();
         } catch {
-            'error in fetching tasks list'
+            console.log('error in fetching tasks list');
         }
     },[]);
 

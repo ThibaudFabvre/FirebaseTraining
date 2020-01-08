@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import {View, Text, StyleSheet, Button, TouchableHighlight }  from 'react-native';
-import { TextInput } from 'react-native-gesture-handler';
+import {View, Text, StyleSheet, TouchableHighlight, TextInput }  from 'react-native';
 import { addTaskToDatabase } from '../api/tasklist';
 
 type Props = {
