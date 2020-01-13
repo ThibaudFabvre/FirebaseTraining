@@ -16,13 +16,14 @@ const News = ({ navigation }) => {
 
     useFocusEffect(
         useCallback(() => {
-        try {
-            getNewsList();
-            console.log('successfuly retrieved the news list')
-        } catch {
-            console.log('error while trying to fetch news list');
-        }
-    },[activeNewsType]));
+            try {
+                getNewsList();
+                console.log('successfuly retrieved the news list')
+            } catch {
+                console.log('error while trying to fetch news list');
+            }
+        },[activeNewsType])
+    );
 
     return (
         <View style={{flex: 1}}>

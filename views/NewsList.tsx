@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableHighlight , ScrollView}  from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TouchableHighlight , ScrollView}  from 'react-native';
 
 import { NewsCard } from '.';
 import { deleteNewsFromDatabase, getNews } from '../api/newsList';
@@ -7,7 +7,6 @@ import { deleteNewsFromDatabase, getNews } from '../api/newsList';
 const NewsList = ({ list, navigation, getNewsList}) => {
 
     const handleDeletion = (id, category, type) => {
-        console.log(category);
         try {
             deleteNewsFromDatabase(id, category, type);
             getNewsList();
@@ -26,15 +25,19 @@ const NewsList = ({ list, navigation, getNewsList}) => {
                 </TouchableHighlight>
             </View>
             <View>
-                {list.highlightedNewsList.map(highlightedNews =>
-                    <View style={{flexDirection: 'row', justifyContent: 'center'}}>
-                        <TouchableHighlight style={{alignSelf: 'center', width: '80%', padding: 8, marginTop: 15, marginBottom: 10, borderRadius: 25, backgroundColor: '#eee', borderWidth: 2, borderColor: '#ddd'}}>
-                            <Text style={{fontWeight: 'bold'}}> > {highlightedNews.resume}</Text>
-                        </TouchableHighlight>
-                        <TouchableHighlight style={{marginLeft: 20, alignSelf: 'center'}} onPress={() => handleDeletion(highlightedNews.id, highlightedNews.category, '/highlights')}>
-                            <Text style={{alignSelf: 'center', justifyContent: 'center'}}>X</Text>
-                        </TouchableHighlight>
-                    </View>
+                {list.highlightedNewsList.map(highlightedNews => {
+                        const highlightedNewsDetailsProps = { id: highlightedNews.id, type: highlightedNews.type, title: highlightedNews.title, resume: highlightedNews.resume, details: highlightedNews.details, imageUrl: highlightedNews.image, navigation: navigation, category: highlightedNews.category };
+                        console.log(highlightedNewsDetailsProps.type);
+                        return (
+                            <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+                                <TouchableHighlight style={{alignSelf: 'center', width: '80%', padding: 8, marginTop: 15, marginBottom: 10, borderRadius: 25, backgroundColor: '#eee', borderWidth: 2, borderColor: '#ddd'}} onPress={() => navigation.navigate('NewsDetails', highlightedNewsDetailsProps)}>
+                                    <Text style={{fontWeight: 'bold'}}> > {highlightedNews.resume}</Text>
+                                </TouchableHighlight>
+                                <TouchableHighlight style={{marginLeft: 20, alignSelf: 'center'}} onPress={() => handleDeletion(highlightedNews.id, highlightedNews.category, '/highlights')}>
+                                    <Text style={{alignSelf: 'center', justifyContent: 'center'}}>X</Text>
+                                </TouchableHighlight>
+                            </View>
+                        )}
                 )}
             </View>
             <View style={{ marginTop: 10, padding: 10}}>
@@ -45,7 +48,7 @@ const NewsList = ({ list, navigation, getNewsList}) => {
             </View>
             {list.defaultNewsList.map(news=>
                 <>
-                    <NewsCard id={news.id} type='default' details={news.details} category='personal' title={news.title} resume={news.resume} imageUrl={news.image} navigation={navigation}/>
+                    <NewsCard id={news.id} type='News' details={news.details} category='personal' title={news.title} resume={news.resume} imageUrl={news.image} navigation={navigation}/>
                     <TouchableHighlight style={{marginLeft: 20, alignSelf: 'center'}} onPress={() => handleDeletion(news.id, news.category, '/News')}>
                         <Text style={{alignSelf: 'center', justifyContent: 'center'}}>X</Text>
                     </TouchableHighlight>

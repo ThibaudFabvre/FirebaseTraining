@@ -58,6 +58,9 @@ export const deleteNewsFromDatabase = (newsId, newsCategory, type) => {
 
 export const updateNewsInDatabase = (newsId, newNewsData, newsCategory, newsType ) => {
     const newsListRef = database().ref('News/' + newsCategory + newsType );
+    console.log(newNewsData.resume);
+    console.log(newsCategory)
+    console.log(newsType);
     newsListRef.child(newsId).set({
         title: newNewsData.title,
         img: newNewsData.imageUrl,

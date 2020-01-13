@@ -21,7 +21,7 @@ const EditNewsForm = ({ route, navigation }) => {
     const updateNews = () => {
         const updatedData = { title: titleToRender, resume: resumeToRender, imageUrl: imageToRender, details: detailsToRender, category: categoryToRender, type: typeToRender };
         try {
-            updateNewsInDatabase(id, updatedData, 'personal', '/highlights');
+            updateNewsInDatabase(id, updatedData, updatedData.category, `/${updatedData.type}`);
             console.log('successfuly updated news in database');
             navigation.navigate('NewsDetails', updatedData);
         } catch {
@@ -40,9 +40,8 @@ const EditNewsForm = ({ route, navigation }) => {
                 onValueChange={(type) =>
                     setNewsType(type)
                 }>
-                    <Picker.Item label="Select news type" value={0}/>
-                    <Picker.Item label="Highlighted news" value="Highlighted news" />
-                    <Picker.Item label="Default news" value="Default news" />
+                    <Picker.Item label="News" value="News" />
+                    <Picker.Item label="highlights" value="highlights" />
             </Picker>
             <Picker
                 selectedValue={categoryToRender}
@@ -50,7 +49,6 @@ const EditNewsForm = ({ route, navigation }) => {
                 onValueChange={(category) =>
                     setNewsCategory(category)
                 }>
-                    <Picker.Item label="Select news category" value={0}/>
                     <Picker.Item label="personal" value="personal" />
                     <Picker.Item label="local" value="local" />
                     <Picker.Item label="world wide" value="world wide" />
