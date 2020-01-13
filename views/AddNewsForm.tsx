@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { View, TextInput, Picker, TouchableHighlight, Text } from 'react-native';
+import { View, TextInput, StyleSheet, Picker, TouchableHighlight,Text } from 'react-native';
 import { addNewsToDatabase } from '../api/newsList';
+import { SquareButton } from '.';
 
 const AddNewsForm = ({ navigation }) => {
     const [ title , setNewsTitle ] = useState();
@@ -22,14 +23,14 @@ const AddNewsForm = ({ navigation }) => {
     }
 
     return (
-        <View style={{flex: 1, justifyContent: 'space-around'}}>
-            <TextInput style={{ alignSelf: 'center', width: '80%', backgroundColor: '#fff', borderRadius: 25, paddingVertical: 10, paddingHorizontal: 15, borderWidth: 1, borderColor: '#aaa'}} onChangeText={inputValue => setNewsTitle(inputValue)} placeholder='title'/>
-            <TextInput style={{ alignSelf: 'center', width: '80%', backgroundColor: '#fff', borderRadius: 25, paddingVertical: 10, paddingHorizontal: 15, borderWidth: 1, borderColor: '#aaa'}} onChangeText={inputValue => setNewsResume(inputValue)} placeholder='resume'/>
-            <TextInput style={{ alignSelf: 'center', width: '80%', backgroundColor: '#fff', borderRadius: 25, paddingVertical: 10, paddingHorizontal: 15, borderWidth: 1, borderColor: '#aaa'}} onChangeText={inputValue => setNewsImageUrl(inputValue)} placeholder='image url'/>
-            <TextInput style={{ alignSelf: 'center', width: '80%', backgroundColor: '#fff', borderRadius: 25, paddingVertical: 10, paddingHorizontal: 15, borderWidth: 1, borderColor: '#aaa'}} onChangeText={inputValue => setNewsDetails(inputValue)} placeholder='details'/>
+        <View style={styles.addNewsWrapper}>
+            <TextInput style={styles.input} onChangeText={inputValue => setNewsTitle(inputValue)} placeholder='title'/>
+            <TextInput style={styles.input} onChangeText={inputValue => setNewsResume(inputValue)} placeholder='resume'/>
+            <TextInput style={styles.input} onChangeText={inputValue => setNewsImageUrl(inputValue)} placeholder='image url'/>
+            <TextInput style={styles.input} onChangeText={inputValue => setNewsDetails(inputValue)} placeholder='details'/>
             <Picker
                 selectedValue={type}
-                style={{ width: '80%', alignSelf: 'center'}}
+                style={styles.picker}
                 onValueChange={(type) =>
                     setNewsType(type)
                 }>
@@ -39,7 +40,7 @@ const AddNewsForm = ({ navigation }) => {
             </Picker>
             <Picker
                 selectedValue={category}
-                style={{ width: '80%', alignSelf: 'center'}}
+                style={styles.picker}
                 onValueChange={(category) =>
                     setNewsCategory(category)
                 }>
@@ -48,12 +49,15 @@ const AddNewsForm = ({ navigation }) => {
                     <Picker.Item label="local" value="local" />
                     <Picker.Item label="world wide" value="world wide" />
             </Picker>
-            <TouchableHighlight style={{backgroundColor: '#000', width: '80%', alignSelf: 'center', borderRadius: 10, borderWidth: 3}} onPress={() => addNews()}>
-                <Text style={{textAlign: 'center', padding: 10, color: '#fff', fontWeight: 'bold'}}> Add News </Text>
-            </TouchableHighlight>
+            <SquareButton text='Add News' action={() => addNews()}/>
         </View>
     );
 };
 
+const styles = StyleSheet.create({
+    input: { alignSelf: 'center', width: '80%', backgroundColor: '#fff', borderRadius: 25, paddingVertical: 10, paddingHorizontal: 15, borderWidth: 1, borderColor: '#aaa'},
+    picker: { width: '80%', alignSelf: 'center'},
+    addNewsWrapper: {flex: 1, justifyContent: 'space-around'},
+})
 
 export default AddNewsForm;

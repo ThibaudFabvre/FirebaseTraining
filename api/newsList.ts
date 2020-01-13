@@ -13,13 +13,15 @@ export const getNews = async (type) => {
         const resume = news.child('resume').val();
         const details = news.child('details').val();
         const img = news.child('img').val();
+        const category = news.child('category').val();
         const id = news.key;
         defaultNewsList.push({
             id: id,
             title: title,
             resume: resume,
             image: img,
-            details: details
+            details: details,
+            category: category,
         })
     });
     highlightedNews.forEach(news => {
@@ -52,15 +54,13 @@ export const addNewsToDatabase = (news, newsType, newsCategory) => {
 }
 
 export const deleteNewsFromDatabase = (newsId, newsCategory, type) => {
+    console.log(newsId, newsCategory, type);
     const newsListRef = database().ref('News/' + newsCategory + type );
     newsListRef.child(newsId).remove();
 } 
 
 export const updateNewsInDatabase = (newsId, newNewsData, newsCategory, newsType ) => {
     const newsListRef = database().ref('News/' + newsCategory + newsType );
-    console.log(newNewsData.resume);
-    console.log(newsCategory)
-    console.log(newsType);
     newsListRef.child(newsId).set({
         title: newNewsData.title,
         img: newNewsData.imageUrl,

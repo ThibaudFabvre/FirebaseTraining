@@ -9,3 +9,5 @@ export { default as NewsCard } from './NewsCard';
 export { default as AddNewsForm } from './AddNewsForm';
 export { default as EditNewsForm } from './EditNewsForm';
 export { default as NewsDetails } from './NewsDetails';
+
+export { default as SquareButton } from './SquareButton';

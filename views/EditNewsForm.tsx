@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { View, TextInput, Picker, TouchableHighlight, Text } from 'react-native';
+import { View, TextInput, Picker, TouchableHighlight, Text, StyleSheet } from 'react-native';
 import { updateNewsInDatabase } from '../api/newsList';
+import { SquareButton } from '.';
 
 const EditNewsForm = ({ route, navigation }) => {
     const { id, title, resume, details, type, category, imageUrl } = route.params;
@@ -29,14 +30,14 @@ const EditNewsForm = ({ route, navigation }) => {
         }
     }
     return (
-        <View style={{flex: 1, justifyContent: 'space-around'}}>
-            <TextInput style={{ alignSelf: 'center', width: '80%', backgroundColor: '#fff', borderRadius: 25, paddingVertical: 10, paddingHorizontal: 15, borderWidth: 1, borderColor: '#aaa'}} onChangeText={inputValue => setNewsTitle(inputValue)} value={titleToRender}/>
-            <TextInput style={{ alignSelf: 'center', width: '80%', backgroundColor: '#fff', borderRadius: 25, paddingVertical: 10, paddingHorizontal: 15, borderWidth: 1, borderColor: '#aaa'}} onChangeText={inputValue => setNewsResume(inputValue)} value={resumeToRender}/>
-            <TextInput style={{ alignSelf: 'center', width: '80%', backgroundColor: '#fff', borderRadius: 25, paddingVertical: 10, paddingHorizontal: 15, borderWidth: 1, borderColor: '#aaa'}} onChangeText={inputValue => setNewsImageUrl(inputValue)} value={imageToRender}/>
-            <TextInput style={{ alignSelf: 'center', width: '80%', backgroundColor: '#fff', borderRadius: 25, paddingVertical: 10, paddingHorizontal: 15, borderWidth: 1, borderColor: '#aaa'}} onChangeText={inputValue => setNewsDetails(inputValue)} value={detailsToRender}/>
+        <View style={styles.editNewsWrapper}>
+            <TextInput style={styles.input} onChangeText={inputValue => setNewsTitle(inputValue)} value={titleToRender}/>
+            <TextInput style={styles.input} onChangeText={inputValue => setNewsResume(inputValue)} value={resumeToRender}/>
+            <TextInput style={styles.input} onChangeText={inputValue => setNewsImageUrl(inputValue)} value={imageToRender}/>
+            <TextInput style={styles.input} onChangeText={inputValue => setNewsDetails(inputValue)} value={detailsToRender}/>
             <Picker
                 selectedValue={typeToRender}
-                style={{ width: '80%', alignSelf: 'center'}}
+                style={styles.picker}
                 onValueChange={(type) =>
                     setNewsType(type)
                 }>
@@ -45,7 +46,7 @@ const EditNewsForm = ({ route, navigation }) => {
             </Picker>
             <Picker
                 selectedValue={categoryToRender}
-                style={{ width: '80%', alignSelf: 'center'}}
+                style={styles.picker}
                 onValueChange={(category) =>
                     setNewsCategory(category)
                 }>
@@ -53,12 +54,15 @@ const EditNewsForm = ({ route, navigation }) => {
                     <Picker.Item label="local" value="local" />
                     <Picker.Item label="world wide" value="world wide" />
             </Picker>
-            <TouchableHighlight style={{backgroundColor: '#000', width: '80%', alignSelf: 'center', borderRadius: 10, borderWidth: 3}} onPress={() => updateNews()}>
-                <Text style={{textAlign: 'center', padding: 10, color: '#fff', fontWeight: 'bold'}}>Update News</Text>
-            </TouchableHighlight>
+            <SquareButton text='Update News' action={() => updateNews()}/>
         </View>
     );
 };
 
+const styles = StyleSheet.create({
+    input: { alignSelf: 'center', width: '80%', backgroundColor: '#fff', borderRadius: 25, paddingVertical: 10, paddingHorizontal: 15, borderWidth: 1, borderColor: '#aaa'},
+    picker: { width: '80%', alignSelf: 'center'},
+    editNewsWrapper: {flex: 1, justifyContent: 'space-around'},
+})
 
 export default EditNewsForm;
