@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet,Picker,  View, Text, TextInput, Button, TouchableHighlight } from 'react-native';
-import { deleteTaskFromList, updateTaskFromList } from '../api/tasklist';
-import { theme } from '../theme';
+import { deleteTaskFromList, updateTaskFromList } from '../../api/tasklist';
+import { theme } from '../../theme';
 
 interface Props {
     title: string,

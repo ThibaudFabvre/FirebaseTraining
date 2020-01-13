@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {View, Text, StyleSheet, TouchableHighlight, TextInput }  from 'react-native';
-import { addTaskToDatabase } from '../api/tasklist';
+import { addTaskToDatabase } from '../../api/tasklist';
 
 type Props = {
     addTaskToList: void;

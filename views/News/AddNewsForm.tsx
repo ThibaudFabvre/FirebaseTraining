@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, TextInput, StyleSheet, Picker, TouchableHighlight,Text } from 'react-native';
-import { addNewsToDatabase } from '../api/newsList';
-import { SquareButton } from '.';
+import { addNewsToDatabase } from '../../api/newsList';
+import { SquareButton } from '..';
 
 const AddNewsForm = ({ navigation }) => {
     const [ title , setNewsTitle ] = useState();

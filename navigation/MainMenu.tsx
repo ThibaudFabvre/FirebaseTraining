@@ -1,7 +1,6 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/core';
 import { createStackNavigator } from '@react-navigation/stack';
-
 import { TaskManager, News, AddNewsForm, NewsDetails, EditNewsForm } from '../views';
 
 const Stack = createStackNavigator();

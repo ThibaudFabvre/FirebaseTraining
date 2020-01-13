@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import {View, ScrollView, StyleSheet }  from 'react-native';
-import { getTasksList } from '../api/tasklist';
-import { List, AddTaskForm } from '.';
-import { theme } from '../theme';
+import { getTasksList } from '../../api/tasklist';
+import { TaskList, AddTaskForm } from '../';
+import { theme } from '../../theme';
 
 
 const TaskManager: React.FC = () => {

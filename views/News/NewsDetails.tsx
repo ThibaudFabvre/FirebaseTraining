@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableHighlight , Image}  from 'react-native';
-import { SquareButton } from '.';
+import { SquareButton } from '..';
 
 const NewsDetails = ({ route, navigation }) => {
     const { id, title, imageUrl, resume, details, category, type } = route.params;

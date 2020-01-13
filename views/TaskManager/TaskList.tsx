@@ -1,6 +1,6 @@
 import React from 'react';
 import { View} from 'react-native';
-import { Task } from '.';
+import { Task } from '..';
 
 interface Props {
     list: any,
@@ -9,7 +9,7 @@ interface Props {
     reloadTasksList: void;
 }
 
-const List: React.FC<Props> = ({ list, color, deleteTaskFromList, reloadTasksList }) => {
+const TaskList: React.FC<Props> = ({ list, color, deleteTaskFromList, reloadTasksList }) => {
     return (
         <View style={{backgroundColor: color, justifyContent: 'space-around', alignItems: 'center'}}>
             {list.map(
@@ -20,4 +20,4 @@ const List: React.FC<Props> = ({ list, color, deleteTaskFromList, reloadTasksLis
 }
 
 
-export default List;
+export default TaskList;

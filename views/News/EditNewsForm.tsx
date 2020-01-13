@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, TextInput, Picker, TouchableHighlight, Text, StyleSheet } from 'react-native';
-import { updateNewsInDatabase } from '../api/newsList';
-import { SquareButton } from '.';
+import { updateNewsInDatabase } from '../../api/newsList';
+import { SquareButton } from '..';
 
 const EditNewsForm = ({ route, navigation }) => {
     const { id, title, resume, details, type, category, imageUrl } = route.params;

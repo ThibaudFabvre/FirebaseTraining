@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TouchableHighlight , ScrollView}  from 'react-native';
 
-import { NewsCard } from '.';
-import { deleteNewsFromDatabase, getNews } from '../api/newsList';
+import { NewsCard } from '..';
+import { deleteNewsFromDatabase, getNews } from '../../api/newsList';
 
 const NewsList = ({ list, navigation, getNewsList}) => {
 

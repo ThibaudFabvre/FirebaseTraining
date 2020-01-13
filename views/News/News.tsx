@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { View, Text, StyleSheet, TouchableHighlight , ScrollView}  from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
-import { getNews } from '../api/newsList';
-import { NewsList } from '.';
+import { getNews } from '../../api/newsList';
+import { NewsList } from '..';
 
 const newsTypes = [{title: 'personal'}, {title: 'local'}, { title: 'world wide'}];
 
