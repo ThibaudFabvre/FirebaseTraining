@@ -11,3 +11,6 @@ export { default as EditNewsForm } from './News/EditNewsForm';
 export { default as NewsDetails } from './News/NewsDetails';
 
 export { default as SquareButton } from './SquareButton';
+
+export { default as Login } from './Authentification/Login';
+export { default as Register } from './Authentification/Register';

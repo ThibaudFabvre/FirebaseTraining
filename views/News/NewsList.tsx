@@ -19,14 +19,15 @@ const NewsList = ({ list, navigation, getNewsList}) => {
     return (
         <ScrollView contentContainerStyle={{backgroundColor: '#fff'}}>
             <View style={styles.sectionWrapper}>
-                <Text style={styles.centeredWrapper}>Main news</Text>
                 <TouchableHighlight style={[styles.centeredButton, styles.centeredButtonWrapper]} onPress={() => navigation.navigate('AddNewsForm') }>
-                    <Text styles={styles.centeredText}>+</Text>
+                    <Text styles={styles.centeredText}>Add News</Text>
                 </TouchableHighlight>
+                <Text style={styles.centeredWrapper}>Main news</Text>
             </View>
             <View>
                 {list.highlightedNewsList.map(highlightedNews => {
                         const highlightedNewsDetailsProps = { id: highlightedNews.id, type: highlightedNews.type, title: highlightedNews.title, resume: highlightedNews.resume, details: highlightedNews.details, imageUrl: highlightedNews.image, navigation: navigation, category: highlightedNews.category };
+                        console.log(highlightedNewsDetailsProps.type);
                         return (
                             <View style={styles.newsWrapper}>
                                 <TouchableHighlight style={styles.highlightednewsWrapper} onPress={() => navigation.navigate('NewsDetails', highlightedNewsDetailsProps)}>
@@ -41,14 +42,11 @@ const NewsList = ({ list, navigation, getNewsList}) => {
             </View>
             <View style={styles.sectionWrapper}>
                 <Text style={styles.centeredWrapper}>Daily news</Text>
-                <TouchableHighlight style={[styles.centeredButton, styles.centeredButtonWrapper]} onPress={() => navigation.navigate('AddNewsForm') }>
-                    <Text>+</Text>
-                </TouchableHighlight>
             </View>
             {list.defaultNewsList.map(news=>
                 <>
                     <NewsCard id={news.id} type='News' details={news.details} category={news.category} title={news.title} resume={news.resume} imageUrl={news.image} navigation={navigation}/>
-                    <TouchableHighlight style={styles.deleteButton} onPress={() => handleDeletion(news.id, news.category, '/News')}>
+                    <TouchableHighlight style={styles.deleteButton} onPress={() => handleDeletion(news.id, news.category, 'News')}>
                         <Text style={[styles.centeredText, styles.lastElement]}>X</Text>
                     </TouchableHighlight>
                 </>
@@ -58,7 +56,7 @@ const NewsList = ({ list, navigation, getNewsList}) => {
 } 
 
 const styles = StyleSheet.create({
-    centeredButtonWrapper: { paddingVertical: 6, paddingHorizontal: 10 },
+    centeredButtonWrapper: { paddingVertical: 5, paddingHorizontal: 10 },
     centeredButton: { borderRadius: 25, alignSelf: 'center', backgroundColor: '#ddd'},
     centeredWrapper: { marginTop: 10, padding: 10, textAlign: 'center', fontWeight: 'bold'},
     centeredText: { alignSelf: 'center', justifyContent: 'center'},

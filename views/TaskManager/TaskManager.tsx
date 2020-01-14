@@ -52,9 +52,9 @@ const TaskManager: React.FC = () => {
     return (
         <View style={{flex: 1}}>
             <ScrollView style={styles.overallStyle}>
-                <List reloadTasksList={reloadTasksList} deleteTaskFromList={deleteTaskFromList} list={toDoList} color={theme.toDoColor}/>
-                <List reloadTasksList={reloadTasksList} deleteTaskFromList={deleteTaskFromList} list={inProgressList} color={theme.inProgressColor}/>
-                <List reloadTasksList={reloadTasksList} deleteTaskFromList={deleteTaskFromList} list={doneList} color={theme.doneColor}/>
+                <TaskList reloadTasksList={reloadTasksList} deleteTaskFromList={deleteTaskFromList} list={toDoList} color={theme.toDoColor}/>
+                <TaskList reloadTasksList={reloadTasksList} deleteTaskFromList={deleteTaskFromList} list={inProgressList} color={theme.inProgressColor}/>
+                <TaskList reloadTasksList={reloadTasksList} deleteTaskFromList={deleteTaskFromList} list={doneList} color={theme.doneColor}/>
             </ScrollView>
             <AddTaskForm addTaskToList={addTaskToList} />
         </View>

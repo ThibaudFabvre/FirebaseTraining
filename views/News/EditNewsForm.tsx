@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, TextInput, Picker, TouchableHighlight, Text, StyleSheet } from 'react-native';
-import { updateNewsInDatabase } from '../../api/newsList';
+import { updateNewsInDatabase, deleteNewsFromDatabase } from '../../api/newsList';
 import { SquareButton } from '..';
 
 const EditNewsForm = ({ route, navigation }) => {
@@ -22,7 +22,10 @@ const EditNewsForm = ({ route, navigation }) => {
     const updateNews = () => {
         const updatedData = { title: titleToRender, resume: resumeToRender, imageUrl: imageToRender, details: detailsToRender, category: categoryToRender, type: typeToRender };
         try {
-            updateNewsInDatabase(id, updatedData, updatedData.category, `/${updatedData.type}`);
+            updateNewsInDatabase(id, updatedData, updatedData.category, updatedData.type);
+            if(updatedData.type !== type) {
+                deleteNewsFromDatabase(id, category, type)
+            }
             console.log('successfuly updated news in database');
             navigation.navigate('NewsDetails', updatedData);
         } catch {

@@ -12,7 +12,7 @@ const AddNewsForm = ({ navigation }) => {
     const [ type, setNewsType ] = useState();
 
     const addNews = () => {
-        const newsToAdd = { title, resume, img, details, category }
+        const newsToAdd = { title, resume, img, details, category, type }
         try {
             addNewsToDatabase(newsToAdd, type, category);
             console.log('added news to databse');
@@ -35,8 +35,8 @@ const AddNewsForm = ({ navigation }) => {
                     setNewsType(type)
                 }>
                     <Picker.Item label="Select news type" value={0}/>
-                    <Picker.Item label="Highlighted news" value="Highlighted news" />
-                    <Picker.Item label="Default news" value="Default news" />
+                    <Picker.Item label="highlights" value="highlights" />
+                    <Picker.Item label="News" value="News" />
             </Picker>
             <Picker
                 selectedValue={category}
